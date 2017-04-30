@@ -1,7 +1,7 @@
-# H1 Siemens Embedded Academy
-# H2 Autonomous car
+# Siemens Embedded Academy
+# Autonomous car
 
-# H4 TOTO:
+# TOTO:
 * PWM
 ..* for DC motors
 ..* for IR LEDs
