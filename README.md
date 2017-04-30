@@ -1,7 +1,7 @@
 # Siemens Embedded Academy
-# Autonomous car
+## Autonomous car
 
-# TOTO:
+### TOTO:
 * PWM
 ..* for DC motors
 ..* for IR LEDs
