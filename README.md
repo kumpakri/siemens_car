@@ -2,8 +2,8 @@
 
 ### TODO:
 * PWM
-..* for DC motors
-..* for IR LEDs
+⋅⋅* for DC motors
+⋅⋅* for IR LEDs
 * Hall effect sensors
 * Bluetooth communication
 * ...
