@@ -25,6 +25,7 @@ void init()
 
 	//there initialize other function
 	//init_motors();
+	//init_Hall();
 
 }
 
