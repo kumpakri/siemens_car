@@ -11,7 +11,6 @@
 // to main.h include all other header files
 #include "main.h"
 
-
 /*
  *  initialize peripheries, this function will be called just once after start program
  */
@@ -28,9 +27,9 @@ void init()
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA , ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
+	//init_Hall();
 
 }
-
 
 
 /*
@@ -39,9 +38,15 @@ void init()
 
 int main(void)
 {
-	init_motors();
-	return 0;
-
+	/*
+	 * initialize peripheries
+	 */
+	init();
+	/*
+	 * main loop
+	 */
+	while(1)
+	{
 
 }
 

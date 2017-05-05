@@ -2,7 +2,7 @@
 
 ### TODO:
 * PWM
-  + for DC motors
+  + for DC motors - prepare for testing
   + for IR LEDs
 * Hall effect sensors
 * Bluetooth communication
