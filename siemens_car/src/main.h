@@ -10,5 +10,7 @@
 
 #include "stm32f4xx.h"
 #include "motor_pwm.h"
+#include "test_blink_led.h"
+#include "ir_sensors.h"
 
 #endif /* MAIN_H_ */
