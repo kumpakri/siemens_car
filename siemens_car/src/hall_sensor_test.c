@@ -7,17 +7,6 @@
 
 #include "main.h"
 
-void EXTI0_IRQHandler(void) {
-    if (EXTI_GetITStatus(EXTI_Line0) != RESET) {
-    	count++;
-
-        /* Clear interrupt flag */
-        EXTI_ClearITPendingBit(EXTI_Line0);
-    }
-
-}
-
-
 
 int main(void) {
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
