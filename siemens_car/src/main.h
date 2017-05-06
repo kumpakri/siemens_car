@@ -10,9 +10,10 @@
 
 #include "stm32f4xx.h"
 #include "motor_pwm.h"
-#include "test_blink_led.h"
 #include "ir_sensors.h"
 #include "hall_sensor.h"
+
+#include "debug_support.h"
 
 
 #endif /* MAIN_H_ */

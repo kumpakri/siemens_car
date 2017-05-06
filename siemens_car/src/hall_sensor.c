@@ -29,6 +29,8 @@ void init_Hall();
 void Configure_PD13();
 void Configure_PD14();
 void EXTI15_10_IRQHandler(void);
+long getRightRevolutions();
+long getLeftRevolutions();
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -146,5 +148,11 @@ void EXTI15_10_IRQHandler(void) {
     }
 }
 
+long getRightRevolutions(){
+	return revolutionsR;
+}
 
+long getLeftRevolutions(){
+	return revolutionsL;
+}
 
