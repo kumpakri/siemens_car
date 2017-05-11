@@ -25,10 +25,6 @@ volatile long revolutionsL=0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* initialize Hall sensors */
-void init_Hall();
-void Configure_PD13();
-void Configure_PD14();
-void EXTI15_10_IRQHandler(void);
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -129,6 +125,7 @@ void Configure_PD14() {
 
 /* Handle Hall sensors interrupt */
 void EXTI15_10_IRQHandler(void) {
+	int i = 0;
     /* if interrupt flag EXTI_Line13 (right wheel) is set: */
     if (EXTI_GetITStatus(EXTI_Line13) != RESET) {
     	revolutionsR++;
@@ -145,6 +142,18 @@ void EXTI15_10_IRQHandler(void) {
         EXTI_ClearITPendingBit(EXTI_Line14);
     }
 }
+
+
+int get_revolutionsR()
+{
+	return revolutionsR;
+}
+
+int get_revolutionsL()
+{
+	return revolutionsL;
+}
+
 
 
 

@@ -19,7 +19,7 @@ void delay2(int counter) {
 
 
 
-int blink2(void)
+int blink(void)
 {
     GPIO_InitTypeDef gpio;
 
@@ -28,15 +28,13 @@ int blink2(void)
     GPIO_StructInit(&gpio);
     gpio.GPIO_Pin = GPIO_Pin_15;
     gpio.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_Init(GPIOD, &gpio);
+    GPIO_Init(GPIOA, &gpio);
 
-    GPIO_SetBits(GPIOD, GPIO_Pin_15);
-
+    GPIO_SetBits(GPIOA, GPIO_Pin_15);
+    GPIO_SetBits(GPIOA, GPIO_Pin_15); // LED ON
     while (1)
     {
-    	GPIO_SetBits(GPIOD, GPIO_Pin_15); // LED ON
-        delay2(400);
-        GPIO_ResetBits(GPIOD, GPIO_Pin_15); // LED OFF
-        delay2(400);
+
+
     }
 }

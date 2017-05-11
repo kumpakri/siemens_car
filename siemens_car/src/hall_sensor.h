@@ -25,4 +25,8 @@ void Configure_PD14();
 /* interrupt handler for interrupts from Hall sensors */
 void EXTI15_10_IRQHandler(void);
 
+int  get_revolutionsR(void);
+
+int  get_revolutionsL(void);
+
 #endif /* SRC_HALL_SENSOR_H_ */

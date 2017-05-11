@@ -9,10 +9,11 @@
 #define MAIN_H_
 
 #include "stm32f4xx.h"
+#include "stm32f4xx_it.h"
 #include "motor_pwm.h"
 #include "test_blink_led.h"
 #include "ir_sensors.h"
-#include "hall_sensor.h"
+//#include "hall_sensor.h"
 
 
 #endif /* MAIN_H_ */
