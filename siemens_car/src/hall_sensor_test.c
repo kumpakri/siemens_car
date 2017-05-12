@@ -7,12 +7,13 @@
 
 #include "main.h"
 
+RCC_ClocksTypeDef RCC_Clocks;
 
 int main(void) {
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
     LEDinit();
     init_Hall();
+
 
     while (1) {
         if (getRightRevolutions()%5 == 0) {
@@ -26,6 +27,8 @@ int main(void) {
         } else {
             GPIO_ResetBits(GPIOD, GPIO_Pin_15);
         }
+
+
     }
 }
 
