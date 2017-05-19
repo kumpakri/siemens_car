@@ -5,9 +5,6 @@
  *      Author: kumpakri
  */
 
-/*	- COMMENT ------------------------------------------------------------------
- * 	when implementing distance measurement, beware of integer variables overflow
- */
 
 /* Includes ------------------------------------------------------------------*/
 #include "hall_sensor.h"
@@ -22,6 +19,8 @@ NVIC_InitTypeDef NVIC_InitStruct;
 
 volatile long revolutionsR=0;
 volatile long revolutionsL=0;
+volatile long revolutionsROverflow=0;
+volatile long revolutionsLOverflow=0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* initialize Hall sensors */
@@ -31,6 +30,8 @@ void Configure_PD14();
 void EXTI15_10_IRQHandler(void);
 long getRightRevolutions();
 long getLeftRevolutions();
+long getRevolutionsROverflow();
+long getRevolutionsLOverflow();
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -134,6 +135,10 @@ void EXTI15_10_IRQHandler(void) {
     /* if interrupt flag EXTI_Line13 (right wheel) is set: */
     if (EXTI_GetITStatus(EXTI_Line13) != RESET) {
     	revolutionsR++;
+    	if(revolutionsR == 2000000000){
+    		revolutionsROverflow++;
+    		revolutionsR=0;
+    	}
 
         /* Clear interrupt flag */
         EXTI_ClearITPendingBit(EXTI_Line13);
@@ -142,6 +147,10 @@ void EXTI15_10_IRQHandler(void) {
     /* if interrupt flag EXTI_Line14 (left wheel) is set: */
     if (EXTI_GetITStatus(EXTI_Line14) != RESET) {
     	revolutionsL++;
+    	if(revolutionsL == 2000000000){
+			revolutionsLOverflow++;
+			revolutionsL=0;
+		}
 
         /* Clear interrupt flag */
         EXTI_ClearITPendingBit(EXTI_Line14);
@@ -155,4 +164,13 @@ long getRightRevolutions(){
 long getLeftRevolutions(){
 	return revolutionsL;
 }
+
+long getRevolutionsROverflow(){
+	return revolutionsROverflow;
+}
+
+long getRevolutionsLOverflow(){
+	return revolutionsLOverflow;
+}
+
 

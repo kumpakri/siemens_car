@@ -28,5 +28,7 @@ void EXTI15_10_IRQHandler(void);
 /* getters for revolution counts */
 long getRightRevolutions();
 long getLeftRevolutions();
+long getRevolutionsROverflow();
+long getRevolutionsLOverflow();
 
 #endif /* SRC_HALL_SENSOR_H_ */

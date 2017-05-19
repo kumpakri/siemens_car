@@ -16,6 +16,8 @@ int main(void) {
 
 
     while (1) {
+
+    	/*
         if (getRightRevolutions()%5 == 0) {
             GPIO_SetBits(GPIOD, GPIO_Pin_12);
         } else {
@@ -27,7 +29,14 @@ int main(void) {
         } else {
             GPIO_ResetBits(GPIOD, GPIO_Pin_15);
         }
+        /**/
 
+    	if(getRightDistInCM()>20){
+            GPIO_SetBits(GPIOD, GPIO_Pin_12);
+		} else {
+			GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+		}
+    	/**/
 
     }
 }

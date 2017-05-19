@@ -12,6 +12,7 @@
 #include "motor_pwm.h"
 #include "ir_sensors.h"
 #include "hall_sensor.h"
+#include "dist_measurement.h"
 
 #include "debug_support.h"
 
