@@ -174,3 +174,12 @@ long getRevolutionsLOverflow(){
 }
 
 
+long getRevolutionsROverflow(){
+	return revolutionsROverflow;
+}
+
+long getRevolutionsLOverflow(){
+	return revolutionsLOverflow;
+}
+
+

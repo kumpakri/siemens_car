@@ -13,13 +13,13 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 GPIO_InitTypeDef GPIO_InitStructure;
-
+EXTI_InitTypeDef EXTI_InitStruct;
+NVIC_InitTypeDef NVIC_InitStruct;
 
 /* Private function prototypes -----------------------------------------------*/
 void userButtonInit();
 void LEDinit();
 void buttonITR();
-
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -28,7 +28,7 @@ void buttonITR();
   */
 void userButtonInit()
 {
-
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
@@ -41,7 +41,7 @@ void userButtonInit()
   */
 void LEDinit()
 {
-
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	/* Configure LED on P1 pin(PD12,15) */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12|GPIO_Pin_15;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -51,13 +51,8 @@ void LEDinit()
 	GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
 
-/* setting User button PA0 as interrupt input*/
 void buttonITR() {
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-
-	EXTI_InitTypeDef EXTI_InitStruct;
-	NVIC_InitTypeDef NVIC_InitStruct;
+	//RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 
 	/* Tell system that you will use PA0 for EXTI_Line0 */
 	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
@@ -83,5 +78,4 @@ void buttonITR() {
 	/* Add to NVIC */
 	NVIC_Init(&NVIC_InitStruct);
 }
-
 
