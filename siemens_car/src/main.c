@@ -15,24 +15,24 @@
  *  initialize peripheries, this function will be called just once after start program
  */
 
-void init() {
 
-	// there call functions RCC_APB1PeriphClockCmd and RCC_APB1PeriphClockCmd
-
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1 , ENABLE);
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
-
-
+void init(){
+	 init_motors();
+	 init_ir_sensors();
 }
 
-/*
- * function
- */
 
 int main(void) {
-	init();
 	blink();
-}
+	/*int i1,i2,i3,i4,i5,j = 0;
+	while(1)
+	{
+		i1 = get_ir_front_left();
+		i2 = get_ir_front_right();
+		i3 = get_ir_left_side_front();
+		i4 = get_ir_right_side_front();
+		i5 = get_ir_buttom();
 
+		j = 1;
+	}*/
+}

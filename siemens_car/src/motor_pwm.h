@@ -19,11 +19,10 @@
 /*
  * function
  */
-void init_motors(void);
+void init_ir_sensors(void);
 void set_speed_motor1(int);
 void set_speed_motor2(int);
 int get_speed_motor1(void);
 int get_speed_motor2(void);
-void init_motor2(void);
 
 #endif /* MOTOR_PWM_H_ */

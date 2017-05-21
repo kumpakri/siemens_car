@@ -21,6 +21,7 @@ void delay2(int counter) {
 
 int blink(void)
 {
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA,ENABLE);
     GPIO_InitTypeDef gpio;
 
 
@@ -31,7 +32,7 @@ int blink(void)
     GPIO_Init(GPIOA, &gpio);
 
     GPIO_SetBits(GPIOA, GPIO_Pin_15);
-    GPIO_SetBits(GPIOA, GPIO_Pin_15); // LED ON
+   //GPIO_ResetBits(GPIOA, GPIO_Pin_15);
     while (1)
     {
 
