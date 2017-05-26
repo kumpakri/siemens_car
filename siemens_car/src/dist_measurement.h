@@ -14,7 +14,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
-#define SPROCKET_TO_WHEEL_REVOLUTIONS_RATIO 3
+#define SPROCKET_TO_WHEEL_REVOLUTIONS_RATIO 6
 
 //perimeter of the wheel in mm
 #define WHEEL_PERIMETER 220
@@ -24,7 +24,5 @@
 /* Exported functions ------------------------------------------------------- */
 long getRightDistInCM();
 long getLeftDistInCM();
-long getRightDistInMM();
-long getLeftDistInMM();
 
 #endif /* USER_INC_DIST_MEASUREMENT_H_ */
