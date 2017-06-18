@@ -19,17 +19,17 @@ USART_InitTypeDef USART_InitStruct;
 NVIC_InitTypeDef NVIC_InitStruct;
 USART_ClockInitTypeDef USART_ClockInitstructure;
 
-volatile char received_string[MAX_STRLEN+1]; // this will hold the recieved string
-volatile int interuptbyl = 0;
+volatile int newMessage = 0;
+volatile char command;
 
 /* Private function prototypes -----------------------------------------------*/
 void configurePinsPA2andPA3();
-void initUART2(int baudrate);
 void configurePinsPC6andPC7();
+void initUART2(int baudrate);
 void initUART6(int baudrate);
-char* getRecievedString();
-int getITRbyl();
-void USART2_IRQHandler(void);
+void USART_puts(USART_TypeDef* USARTx, volatile char *s);
+void setNewMessage(int b);
+int isNewMessage();
 
 /* Private functions ---------------------------------------------------------*/
 void configurePinsPA2andPA3(){
@@ -89,7 +89,7 @@ void USART_puts(USART_TypeDef* USARTx, volatile char *s){
 		// wait until data register is empty
 		while( !(USARTx->SR & 0x00000040) );
 		USART_SendData(USARTx, *s);
-		*s+=1;
+		*s++;
 	}
 }
 
@@ -203,37 +203,78 @@ void initUART6(int baudrate){
 	USART_Cmd(USART6, ENABLE);
 }
 
-char* getRecievedString(){
-	return received_string;
+void setNewMessage(int b){
+	newMessage = b;
 }
 
-int getITRbyl(){
-	return interuptbyl;
+int isNewMessage(){
+	return newMessage;
 }
-/*
+
+char getCommand(){
+	return command;
+}
+
 //Interrupt handler implementation
 void USART2_IRQHandler(void)
 {
-	interuptbyl +=1;
-/*	// check if the USART2 receive interrupt flag was set
+	// check if the USART2 receive interrupt flag was set
 	if( USART_GetITStatus(USART2, USART_IT_RXNE) ){
 		USART_ClearITPendingBit(USART2, USART_IT_RXNE);
+		newMessage = 1;
 
+		char t = USART_ReceiveData(USART2);
+		command = (char) t;
+		/*left backward*/
+	/*	if(t=='a'){command = 'a';} //0
+		if(t=='b'){command = 'b';} //-10
+		if(t=='c'){command = 'c';} //-20
+		if(t=='d'){command = 'd';} //-30
+		if(t=='e'){command = 'e';} //-40
+		if(t=='f'){command = 'f';} //-50
+		if(t=='g'){command = 'g';} //-60
+		if(t=='h'){command = 'h';} //-70
+		if(t=='i'){command = 'i';} //-80
+		if(t=='j'){command = 'j';} //-90
+		if(t=='k'){command = 'k';} //-100
+		/*right backward*/
+	/*	if(t=='l'){command = 'l';} //0
+		if(t=='m'){command = 'm';} //-10
+		if(t=='n'){command = 'n';} //-20
+		if(t=='o'){command = 'o';} //-30
+		if(t=='p'){command = 'p';} //-40
+		if(t=='q'){command = 'q';} //-50
+		if(t=='r'){command = 'r';} //-60
+		if(t=='s'){command = 's';} //-70
+		if(t=='t'){command = 't';} //-80
+		if(t=='u'){command = 'u';} //-90
+		if(t=='v'){command = 'v';} //-100
 
-		static uint8_t cnt = 0; // this counter is used to determine the string length
-		char t = USART2->DR; // the character from the USART2 data register is saved in t
-
-		/* check if the received character is not the LF character (used to determine end of string)
-		 * or the if the maximum string length has been been reached
-		 *//*
-		if( (t != '\n') && (cnt < MAX_STRLEN) ){
-			received_string[cnt] = t;
-			cnt++;
-		}
-		else{ // otherwise reset the character counter and print the received string
-			cnt = 0;
-			USART_puts(USART2, received_string);
-		}
-	}*//*
-}
+		/*left forward*/
+	/*	if(t=='B'){command = 'B';} //10
+		if(t=='C'){command = 'C';} //20
+		if(t=='D'){command = 'D';} //30
+		if(t=='E'){command = 'E';} //40
+		if(t=='F'){command = 'F';} //50
+		if(t=='G'){command = 'G';} //60
+		if(t=='H'){command = 'H';} //70
+		if(t=='I'){command = 'I';} //80
+		if(t=='J'){command = 'J';} //90
+		if(t=='K'){command = 'K';} //100
+		/*right forward*/
+	/*	if(t=='M'){command = 'M';} //10
+		if(t=='N'){command = 'N';} //20
+		if(t=='O'){command = 'O';} //30
+		if(t=='P'){command = 'P';} //40
+		if(t=='Q'){command = 'Q';} //50
+		if(t=='R'){command = 'R';} //60
+		if(t=='S'){command = 'S';} //70
+		if(t=='T'){command = 'T';} //80
+		if(t=='U'){command = 'U';} //90
+		if(t=='V'){command = 'V';} //100
+		/* Stop */
+	/*	if(t=='x'){command = 'x';} //stop both motors
 */
+	}
+}
+
