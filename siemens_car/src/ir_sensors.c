@@ -166,11 +166,12 @@ int get_ir_front_right() {
 }
 
 int get_ir_right_side_front() {
-	return get_intensity(IR_FRONT_RIGHT_ORD);
+	return get_intensity(IR_LEFT_SIDE_FRONT_ORD);
+
 }
 
 int get_ir_left_side_front() {
-	return get_intensity(IR_LEFT_SIDE_FRONT_ORD);
+	return get_intensity(IR_FRONT_RIGHT_ORD);
 }
 
 
