@@ -13,8 +13,8 @@ void init_motors(void);
 void init_motor1(void);
 void init_motor2(void);
 void set_speed_motor(int, TIM_OCInitTypeDef*, TIM_OCInitTypeDef*);
-void set_speed_motor1(int);
-void set_speed_motor2(int);
+void set_speed_motorLeft(int);
+void set_speed_motorRight(int);
 int get_speed_motor1(void);
 int get_speed_motor2(void);
 
@@ -153,7 +153,7 @@ int get_speed_motor2() {
 	return pulse / (period) * 100;
 }
 
-void set_speed_motor1(int speed) {
+void set_speed_motorLeft(int speed) {
 
 	int pulse_forward = 0;
 	int pulse_back = 0;
@@ -187,7 +187,7 @@ void set_speed_motor1(int speed) {
 	TIM_OC3PreloadConfig(TIM1, TIM_OCPreload_Enable);
 }
 
-void set_speed_motor2(int speed) {
+void set_speed_motorRight(int speed) {
 
 	int pulse_forward = 0;
 	int pulse_back = 0;

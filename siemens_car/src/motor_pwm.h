@@ -20,8 +20,8 @@
  * function
  */
 void init_motors(void);
-void set_speed_motor1(int);
-void set_speed_motor2(int);
+void set_speed_motorLeft(int);
+void set_speed_motorRight(int);
 int get_speed_motor1(void);
 int get_speed_motor2(void);
 
